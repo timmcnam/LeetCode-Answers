@@ -51,3 +51,8 @@ class Solution2:
 
         # If no match is found, return -1
         return -1
+
+# Use Cases
+problem = Solution1()
+result = problem.strStr1("butsad", "sad")
+print(result) 
