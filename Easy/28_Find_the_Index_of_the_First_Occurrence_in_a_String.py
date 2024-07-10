@@ -28,14 +28,14 @@
 
 # Simple method: 
 class Solution1:
-    def strStr(self, haystack: str, needle: str) -> int:
+    def strStr1(self, haystack: str, needle: str) -> int:
         return haystack.find(needle)
     
 
 
 # another solution
 class Solution2:
-    def strStr(self, haystack: str, needle: str) -> int:
+    def strStr2(self, haystack: str, needle: str) -> int:
         if not needle:
             return 0
 
