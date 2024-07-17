@@ -40,12 +40,47 @@ digits does not contain any leading 0's.
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MALLOC(size, type) (type *)malloc(size * sizeof(type))
+
 int* plusOne(int* digits, int digitsSize, int* returnSize) {
-    int *z = (int *)malloc( (digitsSize + 1) * sizeof(digits));
-    if (z == NULL) {
-        returnSize = 0;
+    for (int z = digitsSize - 1; z >= 0; z--) {
+        if (digits[z] < 9) {
+            digits[z]++;
+            *returnSize = digitsSize;
+            return digits;
+        }
+
+        digits[z] = 0;
+    }
+    // Covering for all digits being nine
+    // int* arrayVal = MALLOC(digitsSize + 1, int);
+    int *arrayVal = (int *)malloc((digitsSize + 1) * sizeof(int));
+
+    if(arrayVal == NULL) {
         return NULL;
     }
 
+    // Setting first digit to one and rest to zero
+    arrayVal[0] = 1;
+    for(int t = 1; t <= digitsSize; t++) {
+        arrayVal[t] = 0;
+    }
 
+    *returnSize = digitsSize + 1;
+    return arrayVal;
+
+
+}
+
+int main()
+{
+    int digits1[] = {4,3};
+    int size1 = sizeof(digits1) / sizeof(digits1[0]);
+    int newSize1;
+    int *result1 = plusOne(digits1, size1, &newSize1);
+    printf("Example 1 output: ");
+    for (int i = 0; i < newSize1; i++) {
+        printf("%d", result1[i]);
+    }
+    printf("\n");
 }
